@@ -17,12 +17,13 @@ const Hero: React.FC = () => {
             Dive into an unparalleled audio dimension. Our technology crafts soundscapes so real, you won't just hear them—you'll feel them.
           </motion.p>
           <motion.div variants={itemVariants} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <motion.button 
-              className="px-8 py-3 font-semibold rounded-full bg-brand-pink text-white shadow-glow-pink"
+            <motion.a 
+              href="#pricing"
+              className="px-8 py-3 font-semibold rounded-full bg-brand-pink text-white shadow-glow-pink text-center"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}>
               Request Access
-            </motion.button>
+            </motion.a>
             <motion.button 
               className="px-8 py-3 font-semibold rounded-full bg-transparent border-2 border-gray-700 hover:border-gray-500 transition-colors"
               whileHover={{ scale: 1.05, y: -2 }}
@@ -38,7 +39,20 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "backOut" }}
         >
-          <img src="https://images.unsplash.com/photo-1618366712173-8403e70b05b1?q=80&w=800&auto=format&fit=crop" alt="Glowing Headphones" className="w-full h-auto max-w-md mx-auto rounded-full filter saturate-150 contrast-125 object-cover aspect-square" />
+          <motion.img 
+            src="https://source.unsplash.com/800x800/?headphones,futuristic,neon" 
+            alt="Glowing Headphones" 
+            className="w-full h-auto max-w-md mx-auto rounded-full filter saturate-150 contrast-125 object-cover aspect-square" 
+            animate={{
+              y: ["-10px", "10px"],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-br from-brand-pink to-brand-blue opacity-30 mix-blend-color-dodge rounded-full"></div>
           <div className="absolute inset-0 rounded-full shadow-glow-pink opacity-70"></div>
           <div className="absolute inset-0 rounded-full shadow-glow-blue opacity-50 animation-delay-500"></div>

@@ -11,11 +11,19 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ imageUrl, title, description, glowColor }) => {
   const glowClass = glowColor === 'pink' ? 'shadow-glow-pink' : 'shadow-glow-blue';
+  const hoverGlow = glowColor === 'pink' 
+      ? '0 0 30px rgba(240, 0, 184, 0.7)' 
+      : '0 0 30px rgba(0, 240, 255, 0.7)';
 
   return (
     <motion.div
       variants={itemVariants}
-      className="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 text-center backdrop-blur-sm"
+      className="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 text-center backdrop-blur-sm transition-colors duration-300 hover:border-brand-pink/50"
+      whileHover={{
+        y: -8,
+        boxShadow: hoverGlow,
+      }}
+      transition={{ type: 'spring', stiffness: 300 }}
     >
       <div className={`relative aspect-video flex items-center justify-center mb-6 rounded-lg overflow-hidden`}>
         <img src={imageUrl} alt={title} className="w-40 h-40 object-cover rounded-full filter saturate-150 contrast-125" />
@@ -34,19 +42,19 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ imageUrl, title, description,
 const Features: React.FC = () => {
   const featuresData = [
     {
-      imageUrl: 'https://images.unsplash.com/photo-1590602848967-c6b6c7a3b7d1?q=80&w=400&auto=format&fit=crop',
+      imageUrl: 'https://source.unsplash.com/400x400/?microphone,studio,audio',
       title: 'Studio Climb',
       description: 'Experience crystal-clear audio capture with our AI-enhanced microphones, perfect for creators and musicians.',
       glowColor: 'blue' as const,
     },
     {
-      imageUrl: 'https://images.unsplash.com/photo-1526374965328-5f61d4dc18c5?q=80&w=400&auto=format&fit=crop',
+      imageUrl: 'https://source.unsplash.com/400x400/?security,lock,cyber',
       title: 'Secure Loucs',
       description: 'Privacy-first audio processing. Your data is yours, secured with end-to-end encryption on all our devices.',
       glowColor: 'pink' as const,
     },
     {
-      imageUrl: 'https://images.unsplash.com/photo-1581351123306-e575cc7f2683?q=80&w=400&auto=format&fit=crop',
+      imageUrl: 'https://source.unsplash.com/400x400/?gaming,esports,headset',
       title: 'Shadra Gamne',
       description: 'Gain a competitive edge with 3D spatial audio that lets you pinpoint every sound with accuracy.',
       glowColor: 'blue' as const,
