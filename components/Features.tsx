@@ -9,6 +9,16 @@ interface FeatureCardProps {
   glowColor: 'pink' | 'blue';
 }
 
+const textVariants = {
+  rest: { y: 0 },
+  hover: { y: -2 },
+};
+
+const arrowVariants = {
+  rest: { x: 0 },
+  hover: { x: 2 },
+};
+
 const FeatureCard: React.FC<FeatureCardProps> = ({ imageUrl, title, description, glowColor }) => {
   const glowClass = glowColor === 'pink' ? 'shadow-glow-pink' : 'shadow-glow-blue';
   const hoverGlow = glowColor === 'pink' 
@@ -32,9 +42,19 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ imageUrl, title, description,
       </div>
       <h3 className="text-xl font-bold mb-2">{title}</h3>
       <p className="text-gray-400 mb-4 text-sm">{description}</p>
-      <a href="#" className="font-semibold text-brand-pink hover:underline">
-        Learn More &rarr;
-      </a>
+      <motion.a
+        href="#"
+        className="font-semibold text-brand-pink hover:underline inline-flex items-center gap-1"
+        initial="rest"
+        whileHover="hover"
+      >
+        <motion.span variants={textVariants} transition={{ ease: 'easeOut', duration: 0.2 }}>
+          Learn More
+        </motion.span>
+        <motion.span variants={arrowVariants} transition={{ ease: 'easeOut', duration: 0.2 }} className="inline-block">
+          &rarr;
+        </motion.span>
+      </motion.a>
     </motion.div>
   );
 };

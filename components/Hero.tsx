@@ -2,6 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import MotionWrapper, { itemVariants } from './MotionWrapper';
 
+const textVariants = {
+  rest: { y: 0 },
+  hover: { y: -2 },
+};
+
+const arrowVariants = {
+  rest: { x: 0 },
+  hover: { x: 2 },
+};
+
 const Hero: React.FC = () => {
   return (
     <section className="min-h-screen flex items-center pt-24 pb-12 px-4 md:px-8 lg:px-16">
@@ -25,10 +35,17 @@ const Hero: React.FC = () => {
               Request Access
             </motion.a>
             <motion.button 
-              className="px-8 py-3 font-semibold rounded-full bg-transparent border-2 border-gray-700 hover:border-gray-500 transition-colors"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}>
-              Learn More
+              className="px-8 py-3 font-semibold rounded-full bg-transparent border-2 border-gray-700 hover:border-gray-500 transition-colors flex items-center justify-center gap-2 overflow-hidden"
+              initial="rest"
+              whileHover="hover"
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.span variants={textVariants} transition={{ ease: 'easeOut', duration: 0.2 }}>
+                Learn More
+              </motion.span>
+              <motion.span variants={arrowVariants} transition={{ ease: 'easeOut', duration: 0.2 }} className="inline-block">
+                &rarr;
+              </motion.span>
             </motion.button>
           </motion.div>
         </MotionWrapper>
